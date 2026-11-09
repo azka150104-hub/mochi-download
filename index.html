@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOCHI — Roblox Keyless Experience</title>
+<meta name="description" content="MOCHI X MUI KEYLESS — client Roblox keyless, stabil, cepat, tanpa ribet.">
+<style>
+  :root{
+    --bg:#0a0a0f;
+    --bg2:#0f1018;
+    --card:#14151f;
+    --border:#232636;
+    --accent:#ff4d6d;
+    --accent2:#7b5bff;
+    --text:#e8e8f0;
+    --muted:#9a9cb0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Segoe UI',system-ui,-apple-system,Roboto,sans-serif;
+    background:radial-gradient(1200px 600px at 80% -10%,#2a1a3a 0%,transparent 60%),
+               radial-gradient(1000px 500px at 0% 0%,#1a1a2e 0%,transparent 55%),
+               var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  /* nav */
+  nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);
+    background:rgba(10,10,15,.78);
+    border-bottom:1px solid var(--border);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-weight:800;font-size:20px;letter-spacing:.5px}
+  .logo span{color:var(--accent)}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 24px;border-radius:12px;font-size:15px;font-weight:600;
+    text-decoration:none;cursor:pointer;border:none;transition:transform .15s,box-shadow .15s;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#fff;box-shadow:0 8px 30px rgba(255,77,109,.35);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(255,77,109,.45)}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+  .btn-ghost:hover{border-color:var(--accent)}
+  /* hero */
+  #hero{padding:96px 0 72px;text-align:center}
+  .badge{
+    display:inline-block;padding:6px 16px;border-radius:999px;
+    background:rgba(123,91,255,.14);color:#b9a8ff;font-size:13px;font-weight:600;
+    border:1px solid rgba(123,91,255,.3);margin-bottom:24px;
+  }
+  h1{font-size:clamp(36px,6vw,64px);font-weight:900;line-height:1.05;letter-spacing:-1px}
+  h1 .grad{
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .lead{color:var(--muted);font-size:18px;max-width:640px;margin:20px auto 36px}
+  .cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .download-meta{margin-top:20px;color:var(--muted);font-size:13px}
+  /* features */
+  #features{padding:72px 0}
+  .section-title{text-align:center;font-size:28px;font-weight:800;margin-bottom:8px}
+  .section-sub{text-align:center;color:var(--muted);margin-bottom:48px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+  .card{
+    background:var(--card);border:1px solid var(--border);border-radius:16px;
+    padding:28px;transition:transform .2s,border-color .2s;
+  }
+  .card:hover{transform:translateY(-4px);border-color:var(--accent)}
+  .card .icon{font-size:28px;margin-bottom:14px}
+  .card h3{font-size:17px;margin-bottom:10px}
+  .card p{color:var(--muted);font-size:14px}
+  /* steps */
+  #install{padding:72px 0}
+  .steps{display:flex;flex-direction:column;gap:16px;max-width:680px;margin:0 auto}
+  .step{
+    display:flex;gap:18px;align-items:flex-start;
+    background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 24px;
+  }
+  .step .num{
+    flex:0 0 40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));font-weight:800;font-size:18px;color:#fff;
+  }
+  .step h4{font-size:15px;margin-bottom:4px}
+  .step p{color:var(--muted);font-size:14px}
+  /* download section */
+  #download{padding:72px 0;text-align:center}
+  .download-card{
+    max-width:560px;margin:0 auto;padding:40px;
+    background:var(--card);border:1px solid var(--border);border-radius:20px;
+  }
+  .download-card .ver{color:var(--muted);font-size:13px;margin-bottom:16px}
+  .download-card .desc{color:var(--muted);font-size:14px;margin:20px 0 24px}
+  .version-badge{
+    display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:8px;
+    background:rgba(255,77,109,.12);color:var(--accent);font-size:12px;font-weight:700;
+  }
+  /* footer */
+  footer{
+    border-top:1px solid var(--border);padding:40px 0;text-align:center;
+    color:var(--muted);font-size:13px;
+  }
+  footer .brand{color:var(--text);font-weight:700}
+  @media(max-width:640px){
+    .nav-links a:not(.btn){display:none}
+    h1{font-size:34px}
+    .btn{padding:12px 20px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">MOCHI<span>.</span></div>
+    <div class="nav-links">
+      <a href="#features">Fitur</a>
+      <a href="#install">Cara Pasang</a>
+      <a href="#download" class="btn btn-primary">Download</a>
+    </div>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="wrap">
+    <span class="badge">✦ Keyless · No Key Diperlukan</span>
+    <h1>Main <span class="grad">Roblox</span><br>Tanpa Ribet.</h1>
+    <p class="lead">MOCHI X MUI KEYLESS — client Roblox keyless yang stabil, cepat, dan ringan. Buka langsung, main langsung, tanpa isi key.</p>
+    <div class="cta-row">
+      <a href="mochi.apk" class="btn btn-primary" download>⬇ Download APK</a>
+      <a href="#install" class="btn btn-ghost">Cara Pasang</a>
+    </div>
+    <div class="download-meta">Android 7.0+ · Versi <span class="version-badge" id="heroVer">2.745.1142</span></div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <h2 class="section-title">Kenapa MOCHI?</h2>
+    <p class="section-sub">Dibangun buat pengalaman yang mulus dan bebas gangguan.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="icon">⚡</div>
+        <h3>Keyless</h3>
+        <p>Tanpa key system, tanpa nunggu verify. Instal, buka, langsung main.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🛡️</div>
+        <h3>Stabil & Aman</h3>
+        <p>Optimasi performa biar FPS tetap tinggi dan jarang crash.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🎨</div>
+        <h3>UI Bersih</h3>
+        <p>Tampilan modern dan ringan, tanpa bloat yang ganggu.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔄</div>
+        <h3>Update Rutin</h3>
+        <p>Selalu ngejar versi Roblox terbaru biar tetap jalan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <h2 class="section-title">Cara Pasang</h2>
+    <p class="section-sub">Empat langkah, langsung main.</p>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div><h4>Download APK</h4><p>Klik tombol download di atas, simpan file <code>mochi.apk</code>.</p></div></div>
+      <div class="step"><div class="num">2</div><div><h4>Izinkan Sumber Tidak Dikenal</h4><p>Buka Settings → Security → aktifkan "Install from unknown sources".</p></div></div>
+      <div class="step"><div class="num">3</div><div><h4>Instal</h4><p>Buka file APK yang sudah di-download, tekan Install.</p></div></div>
+      <div class="step"><div class="num">4</div><div><h4>Login & Main</h4><p>Buka MOCHI, login akun Roblox kamu, langsung main.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="download">
+  <div class="wrap">
+    <div class="download-card">
+      <h2 style="font-size:24px;font-weight:800;margin-bottom:8px">Download MOCHI</h2>
+      <span class="version-badge" id="dlVer">v2.745.1142</span>
+      <p class="desc">Versi stabil terbaru. File ~100 MB. Instal ulang kalau dapat force-update dari Roblox.</p>
+      <a href="mochi.apk" class="btn btn-primary" download style="width:100%;justify-content:center">⬇ Download APK Sekarang</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><span class="brand">MOCHI.</span> — Roblox Keyless Experience</p>
+    <p style="margin-top:8px">MOCHI tidak berafiliasi dengan, atau didukung oleh, Roblox Corporation.</p>
+  </div>
+</footer>
+
+</body>
+</html>
