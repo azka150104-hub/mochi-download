@@ -106,6 +106,22 @@
     display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:8px;
     background:rgba(255,77,109,.12);color:var(--accent);font-size:12px;font-weight:700;
   }
+  /* download list */
+  .dl-list{display:flex;flex-direction:column;gap:18px;margin-top:8px;text-align:left}
+  .dl-item{padding:18px;background:var(--bg2);border:1px solid var(--border);border-radius:14px}
+  .dl-btn{width:100%;justify-content:center;margin-bottom:12px}
+  .dl-row{display:flex;gap:10px;align-items:center}
+  .dl-link{
+    flex:1;min-width:0;padding:10px 12px;border-radius:8px;border:1px solid var(--border);
+    background:var(--bg);color:var(--muted);font-size:12px;font-family:Consolas,Menlo,monospace;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .copy-btn{
+    flex:0 0 auto;padding:10px 16px;border-radius:8px;border:1px solid var(--border);
+    background:var(--card);color:var(--text);font-size:13px;font-weight:600;cursor:pointer;
+    transition:border-color .15s,color .15s;white-space:nowrap;
+  }
+  .copy-btn:hover{border-color:var(--accent);color:var(--accent)}
   /* footer */
   footer{
     border-top:1px solid var(--border);padding:40px 0;text-align:center;
@@ -138,7 +154,7 @@
     <h1>Main <span class="grad">Roblox</span><br>Tanpa Ribet.</h1>
     <p class="lead">MOCHI X MUI KEYLESS — client Roblox keyless yang stabil, cepat, dan ringan. Buka langsung, main langsung, tanpa isi key.</p>
     <div class="cta-row">
-      <a href="https://github.com/azka150104-hub/mochi-download/releases/download/v2.745.1142/mochi-v2.745.1142.apk" class="btn btn-primary" download>⬇ Download APK</a>
+      <a href="#download" class="btn btn-primary">⬇ Download APK</a>
       <a href="#install" class="btn btn-ghost">Cara Pasang</a>
     </div>
     <div class="download-meta">Android 7.0+ · Versi <span class="version-badge" id="heroVer">2.745.1142</span></div>
@@ -192,11 +208,43 @@
     <div class="download-card">
       <h2 style="font-size:24px;font-weight:800;margin-bottom:8px">Download MOCHI</h2>
       <span class="version-badge" id="dlVer">v2.745.1142</span>
-      <p class="desc">Versi stabil terbaru. File ~70 MB. Instal ulang kalau dapat force-update dari Roblox.</p>
-      <a href="https://github.com/azka150104-hub/mochi-download/releases/download/v2.745.1142/mochi-v2.745.1142.apk" class="btn btn-primary" download style="width:100%;justify-content:center">⬇ Download APK Sekarang</a>
+      <p class="desc">4 varian tersedia — pilih salah satu. Semuanya keyless, Android 7.0+. Klik tombol buat langsung download, atau salin link di bawahnya.</p>
+      <div class="dl-list">
+        <div class="dl-item">
+          <a class="btn btn-primary dl-btn" href="https://github.com/azka150104-hub/mochi-download/releases/download/v2.745.1142/mochi-1-v2.745.1142.apk" download>⬇ MOCHI 1</a>
+          <div class="dl-row"><input class="dl-link" type="text" readonly value="https://github.com/azka150104-hub/mochi-download/releases/download/v2.745.1142/mochi-1-v2.745.1142.apk"><button class="copy-btn" onclick="copyLink(this)">Salin</button></div>
+        </div>
+        <div class="dl-item">
+          <a class="btn btn-primary dl-btn" href="https://github.com/azka150104-hub/mochi-download/releases/download/v2.745.1142/mochi-2-v2.745.1142.apk" download>⬇ MOCHI 2</a>
+          <div class="dl-row"><input class="dl-link" type="text" readonly value="https://github.com/azka150104-hub/mochi-download/releases/download/v2.745.1142/mochi-2-v2.745.1142.apk"><button class="copy-btn" onclick="copyLink(this)">Salin</button></div>
+        </div>
+        <div class="dl-item">
+          <a class="btn btn-primary dl-btn" href="https://github.com/azka150104-hub/mochi-download/releases/download/v2.745.1142/mochi-3-v2.745.1142.apk" download>⬇ MOCHI 3</a>
+          <div class="dl-row"><input class="dl-link" type="text" readonly value="https://github.com/azka150104-hub/mochi-download/releases/download/v2.745.1142/mochi-3-v2.745.1142.apk"><button class="copy-btn" onclick="copyLink(this)">Salin</button></div>
+        </div>
+        <div class="dl-item">
+          <a class="btn btn-primary dl-btn" href="https://github.com/azka150104-hub/mochi-download/releases/download/v2.745.1142/mochi-4-v2.745.1142.apk" download>⬇ MOCHI 4</a>
+          <div class="dl-row"><input class="dl-link" type="text" readonly value="https://github.com/azka150104-hub/mochi-download/releases/download/v2.745.1142/mochi-4-v2.745.1142.apk"><button class="copy-btn" onclick="copyLink(this)">Salin</button></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+function copyLink(btn){
+  var input = btn.parentElement.querySelector('.dl-link');
+  input.select();
+  input.setSelectionRange(0, 99999);
+  var ok = false;
+  try { ok = document.execCommand('copy'); } catch(e) { ok = false; }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(input.value).then(function(){ btn.textContent = 'Tersalin ✓'; setTimeout(function(){ btn.textContent = 'Salin'; }, 1500); });
+  } else if (ok) {
+    btn.textContent = 'Tersalin ✓'; setTimeout(function(){ btn.textContent = 'Salin'; }, 1500);
+  }
+}
+</script>
 
 <footer>
   <div class="wrap">
